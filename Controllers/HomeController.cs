@@ -7,5 +7,10 @@ namespace MinimalJwt.Controllers
     [ApiController]
     public class HomeController : ControllerBase
     {
+        [HttpGet]
+        public IActionResult Get()
+        {
+            return Ok("Hello World");
+        }
     }
 }
