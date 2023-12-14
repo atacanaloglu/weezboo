@@ -7,9 +7,9 @@ namespace MinimalJwt.Services
     {
         public User Get(UserLogin userLogin)
         {
-            User user = UserRepository.Users.FirstOrDefault(o => o.Username.Equals
-            (userLogin.Username, StringComparison.OrdinalIgnoreCase) && o.Password.Equals(userLogin.Password ));
-
+            User user = UserRepository.Users.FirstOrDefault(
+                o => o.Username.Equals(userLogin.Username, StringComparison.OrdinalIgnoreCase) && o.Password.Equals(userLogin.Password)
+            );
             return user;
         }
     }
