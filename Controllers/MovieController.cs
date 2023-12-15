@@ -7,5 +7,7 @@ namespace MinimalJwt.Controllers
     [ApiController]
     public class MovieController : ControllerBase
     {
+
+
     }
 }
