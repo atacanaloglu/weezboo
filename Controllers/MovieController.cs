@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using MinimalJwt.Models;
 
 namespace MinimalJwt.Controllers
 {
@@ -7,7 +8,6 @@ namespace MinimalJwt.Controllers
     [ApiController]
     public class MovieController : ControllerBase
     {
-
 
     }
 }
