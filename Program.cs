@@ -62,8 +62,7 @@ app.UseSwagger();
 app.UseAuthorization();
 app.UseAuthentication();
 
-app.MapGet("/", () => "Hello World!")
-    .ExcludeFromDescription();
+
 
 app.MapPost("/login",
 (UserLogin user, IUserService service) => Login(user, service))
