@@ -19,35 +19,35 @@ namespace MinimalJwt.Controllers
 
         [HttpPost]
         [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme, Roles = "Administrator")]
-      
 
 
-        IResult Create(Movie movie, IMovieService service)
+
+        public IResult Create(Movie movie, IMovieService service)
         {
             var result = service.Create(movie);
             return Results.Ok(result);
         }
-    
 
-    //public IActionResult Create([FromBody] Movie movie)
-    //    {
-    //        if (!ModelState.IsValid)
-    //        {
-    //            return BadRequest(ModelState);
-    //        }
 
-    //        var createdMovie = _movieService.Create(movie);
+        //public IActionResult Create([FromBody] Movie movie)
+        //    {
+        //        if (!ModelState.IsValid)
+        //        {
+        //            return BadRequest(ModelState);
+        //        }
 
-    //        if (createdMovie != null)
-    //        {
-    //            // Assuming your IMovieService returns the created movie upon success
-    //            return Ok(createdMovie);
-    //        }
-    //        else
-    //        {
-    //            // You can customize the response for failure if needed.
-    //            return BadRequest("Failed to create movie");
-    //        }
-    //    }
+        //        var createdMovie = _movieService.Create(movie);
+
+        //        if (createdMovie != null)
+        //        {
+        //            // Assuming your IMovieService returns the created movie upon success
+        //            return Ok(createdMovie);
+        //        }
+        //        else
+        //        {
+        //            // You can customize the response for failure if needed.
+        //            return BadRequest("Failed to create movie");
+        //        }
+        //    }
     }
 }
