@@ -10,7 +10,7 @@ using System.Security.Claims;
 using System.Text;
 
 var builder = WebApplication.CreateBuilder(args);
-
+builder.Services.AddControllers();
 builder.Services.AddSwaggerGen(options =>
 {
     options.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme
@@ -53,11 +53,10 @@ builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme).AddJw
     };
 });
 builder.Services.AddAuthorization();
-
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSingleton<IMovieService, MovieService>();
 builder.Services.AddSingleton<IUserService, UserService>();
-
+builder.Services.AddScoped<IMovieService, MovieService>();
 
 var app = builder.Build();
 
@@ -83,8 +82,8 @@ app.MapGet("/get",
     .Produces<Movie>();
 
 app.MapGet("/list",
-    (IMovieService service)=> List(service))
-    .Produces<List<Movie>>(statusCode:200,contentType:"application/json");
+    (IMovieService service) => List(service))
+    .Produces<List<Movie>>(statusCode: 200, contentType: "application/json");
 
 app.MapPut("/update",
     [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme, Roles = "Administrator")]
@@ -153,7 +152,7 @@ IResult Get(int id, IMovieService service)
 
 IResult List(IMovieService service)
 {
-    var movies= service.List();
+    var movies = service.List();
 
     return Results.Ok(movies);
 }

@@ -2,7 +2,7 @@
 
 namespace MinimalJwt.Repositories
 {
-    public class MovieRepository
+    public class MovieRepository 
     {
         public static List<Movie> Movies = new()
         {

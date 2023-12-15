@@ -20,7 +20,7 @@ namespace MinimalJwt.Services
             return movie;
         }
 
-        public List<Movie> List() 
+        public List<Movie> List()
         {
             var movies = MovieRepository.Movies;
             return movies;
