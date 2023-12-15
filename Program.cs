@@ -70,11 +70,7 @@ app.MapPost("/login",
     .Accepts<UserLogin>("application/json")
     .Produces<string>();
 
-app.MapPost("/create",
-[Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme, Roles = "Administrator")]
-(Movie movie, IMovieService service) => Create(movie, service))
-    .Accepts<Movie>("application/json")
-    .Produces<Movie>(statusCode: 200, contentType: "application/json");
+
 
 app.MapGet("/get",
 [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme, Roles = "Standard, Administrator")]
@@ -85,15 +81,9 @@ app.MapGet("/list",
     (IMovieService service) => List(service))
     .Produces<List<Movie>>(statusCode: 200, contentType: "application/json");
 
-app.MapPut("/update",
-[Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme, Roles = "Administrator")]
-(Movie newMovie, IMovieService service) => Update(newMovie, service))
-    .Accepts<Movie>("application/json")
-    .Produces<Movie>(statusCode: 200, contentType: "application/json");
 
-app.MapDelete("/delete",
-[Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme, Roles = "Administrator")]
-(int id, IMovieService service) => Delete(id, service));
+
+
 
 IResult Login(UserLogin user, IUserService service)
 {
@@ -131,11 +121,7 @@ IResult Login(UserLogin user, IUserService service)
     return Results.BadRequest("Invalid user credentials");
 }
 
-IResult Create(Movie movie, IMovieService service)
-{
-    var result = service.Create(movie);
-    return Results.Ok(result);
-}
+
 
 IResult Get(int id, IMovieService service)
 {
@@ -153,23 +139,9 @@ IResult List(IMovieService service)
     return Results.Ok(movies);
 }
 
-IResult Update(Movie newMovie, IMovieService service)
-{
-    var updatedMovie = service.Update(newMovie);
 
-    if (updatedMovie is null) Results.NotFound("Movie not found");
 
-    return Results.Ok(updatedMovie);
-}
 
-IResult Delete(int id, IMovieService service)
-{
-    var result = service.Delete(id);
-
-    if (!result) Results.BadRequest("Something went wrong");
-
-    return Results.Ok(result);
-}
 
 app.UseSwaggerUI();
 
